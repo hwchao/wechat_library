@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.library.mapper.BookMapper" >
+  <resultMap id="BaseResultMap" type="com.library.pojo.Book" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="cid" property="cid" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="subtitle" property="subtitle" jdbcType="VARCHAR" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="publisher" property="publisher" jdbcType="VARCHAR" />
+    <result column="pages" property="pages" jdbcType="INTEGER" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="binding" property="binding" jdbcType="CHAR" />
+    <result column="translater" property="translater" jdbcType="VARCHAR" />
+    <result column="isbn13" property="isbn13" jdbcType="CHAR" />
+    <result column="isbn10" property="isbn10" jdbcType="CHAR" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="pubdate" property="pubdate" jdbcType="DATE" />
+    <result column="num_raters" property="numRaters" jdbcType="INTEGER" />
+    <result column="average" property="average" jdbcType="REAL" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, cid, title, subtitle, author, publisher, pages, image, binding, translater, isbn13, 
+    isbn10, price, pubdate, num_raters, average, num
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.library.pojo.BookExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from book
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from book
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from book
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.library.pojo.BookExample" >
+    delete from book
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.library.pojo.Book" >
+    insert into book (id, cid, title, 
+      subtitle, author, publisher, 
+      pages, image, binding, 
+      translater, isbn13, isbn10, 
+      price, pubdate, num_raters, 
+      average, num)
+    values (#{id,jdbcType=BIGINT}, #{cid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{subtitle,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, #{publisher,jdbcType=VARCHAR}, 
+      #{pages,jdbcType=INTEGER}, #{image,jdbcType=VARCHAR}, #{binding,jdbcType=CHAR}, 
+      #{translater,jdbcType=VARCHAR}, #{isbn13,jdbcType=CHAR}, #{isbn10,jdbcType=CHAR}, 
+      #{price,jdbcType=DECIMAL}, #{pubdate,jdbcType=DATE}, #{numRaters,jdbcType=INTEGER}, 
+      #{average,jdbcType=REAL}, #{num,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.library.pojo.Book" >
+    insert into book
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cid != null" >
+        cid,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="subtitle != null" >
+        subtitle,
+      </if>
+      <if test="author != null" >
+        author,
+      </if>
+      <if test="publisher != null" >
+        publisher,
+      </if>
+      <if test="pages != null" >
+        pages,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+      <if test="binding != null" >
+        binding,
+      </if>
+      <if test="translater != null" >
+        translater,
+      </if>
+      <if test="isbn13 != null" >
+        isbn13,
+      </if>
+      <if test="isbn10 != null" >
+        isbn10,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="pubdate != null" >
+        pubdate,
+      </if>
+      <if test="numRaters != null" >
+        num_raters,
+      </if>
+      <if test="average != null" >
+        average,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="cid != null" >
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="subtitle != null" >
+        #{subtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="publisher != null" >
+        #{publisher,jdbcType=VARCHAR},
+      </if>
+      <if test="pages != null" >
+        #{pages,jdbcType=INTEGER},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="binding != null" >
+        #{binding,jdbcType=CHAR},
+      </if>
+      <if test="translater != null" >
+        #{translater,jdbcType=VARCHAR},
+      </if>
+      <if test="isbn13 != null" >
+        #{isbn13,jdbcType=CHAR},
+      </if>
+      <if test="isbn10 != null" >
+        #{isbn10,jdbcType=CHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="pubdate != null" >
+        #{pubdate,jdbcType=DATE},
+      </if>
+      <if test="numRaters != null" >
+        #{numRaters,jdbcType=INTEGER},
+      </if>
+      <if test="average != null" >
+        #{average,jdbcType=REAL},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.library.pojo.BookExample" resultType="java.lang.Integer" >
+    select count(*) from book
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update book
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.cid != null" >
+        cid = #{record.cid,jdbcType=INTEGER},
+      </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subtitle != null" >
+        subtitle = #{record.subtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.author != null" >
+        author = #{record.author,jdbcType=VARCHAR},
+      </if>
+      <if test="record.publisher != null" >
+        publisher = #{record.publisher,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pages != null" >
+        pages = #{record.pages,jdbcType=INTEGER},
+      </if>
+      <if test="record.image != null" >
+        image = #{record.image,jdbcType=VARCHAR},
+      </if>
+      <if test="record.binding != null" >
+        binding = #{record.binding,jdbcType=CHAR},
+      </if>
+      <if test="record.translater != null" >
+        translater = #{record.translater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isbn13 != null" >
+        isbn13 = #{record.isbn13,jdbcType=CHAR},
+      </if>
+      <if test="record.isbn10 != null" >
+        isbn10 = #{record.isbn10,jdbcType=CHAR},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pubdate != null" >
+        pubdate = #{record.pubdate,jdbcType=DATE},
+      </if>
+      <if test="record.numRaters != null" >
+        num_raters = #{record.numRaters,jdbcType=INTEGER},
+      </if>
+      <if test="record.average != null" >
+        average = #{record.average,jdbcType=REAL},
+      </if>
+      <if test="record.num != null" >
+        num = #{record.num,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update book
+    set id = #{record.id,jdbcType=BIGINT},
+      cid = #{record.cid,jdbcType=INTEGER},
+      title = #{record.title,jdbcType=VARCHAR},
+      subtitle = #{record.subtitle,jdbcType=VARCHAR},
+      author = #{record.author,jdbcType=VARCHAR},
+      publisher = #{record.publisher,jdbcType=VARCHAR},
+      pages = #{record.pages,jdbcType=INTEGER},
+      image = #{record.image,jdbcType=VARCHAR},
+      binding = #{record.binding,jdbcType=CHAR},
+      translater = #{record.translater,jdbcType=VARCHAR},
+      isbn13 = #{record.isbn13,jdbcType=CHAR},
+      isbn10 = #{record.isbn10,jdbcType=CHAR},
+      price = #{record.price,jdbcType=DECIMAL},
+      pubdate = #{record.pubdate,jdbcType=DATE},
+      num_raters = #{record.numRaters,jdbcType=INTEGER},
+      average = #{record.average,jdbcType=REAL},
+      num = #{record.num,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.library.pojo.Book" >
+    update book
+    <set >
+      <if test="cid != null" >
+        cid = #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="subtitle != null" >
+        subtitle = #{subtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="publisher != null" >
+        publisher = #{publisher,jdbcType=VARCHAR},
+      </if>
+      <if test="pages != null" >
+        pages = #{pages,jdbcType=INTEGER},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="binding != null" >
+        binding = #{binding,jdbcType=CHAR},
+      </if>
+      <if test="translater != null" >
+        translater = #{translater,jdbcType=VARCHAR},
+      </if>
+      <if test="isbn13 != null" >
+        isbn13 = #{isbn13,jdbcType=CHAR},
+      </if>
+      <if test="isbn10 != null" >
+        isbn10 = #{isbn10,jdbcType=CHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="pubdate != null" >
+        pubdate = #{pubdate,jdbcType=DATE},
+      </if>
+      <if test="numRaters != null" >
+        num_raters = #{numRaters,jdbcType=INTEGER},
+      </if>
+      <if test="average != null" >
+        average = #{average,jdbcType=REAL},
+      </if>
+      <if test="num != null" >
+        num = #{num,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.library.pojo.Book" >
+    update book
+    set cid = #{cid,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      subtitle = #{subtitle,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      publisher = #{publisher,jdbcType=VARCHAR},
+      pages = #{pages,jdbcType=INTEGER},
+      image = #{image,jdbcType=VARCHAR},
+      binding = #{binding,jdbcType=CHAR},
+      translater = #{translater,jdbcType=VARCHAR},
+      isbn13 = #{isbn13,jdbcType=CHAR},
+      isbn10 = #{isbn10,jdbcType=CHAR},
+      price = #{price,jdbcType=DECIMAL},
+      pubdate = #{pubdate,jdbcType=DATE},
+      num_raters = #{numRaters,jdbcType=INTEGER},
+      average = #{average,jdbcType=REAL},
+      num = #{num,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
