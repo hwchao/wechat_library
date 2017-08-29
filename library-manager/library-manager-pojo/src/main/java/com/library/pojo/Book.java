@@ -1,5 +1,6 @@
 package com.library.pojo;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class Book {
@@ -21,14 +22,14 @@ public class Book {
 
     private String binding;
 
-    private String translater;
+    private String translator;
 
     private String isbn13;
 
     private String isbn10;
 
-    private Long price;
-    
+    private BigDecimal price;
+
     private Date pubdate;
 
     private Integer numRaters;
@@ -109,12 +110,12 @@ public class Book {
         this.binding = binding == null ? null : binding.trim();
     }
 
-    public String getTranslater() {
-        return translater;
+    public String getTranslator() {
+        return translator;
     }
 
-    public void setTranslater(String translater) {
-        this.translater = translater == null ? null : translater.trim();
+    public void setTranslator(String translator) {
+        this.translator = translator == null ? null : translator.trim();
     }
 
     public String getIsbn13() {
@@ -133,11 +134,11 @@ public class Book {
         this.isbn10 = isbn10 == null ? null : isbn10.trim();
     }
 
-    public Long getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Long price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

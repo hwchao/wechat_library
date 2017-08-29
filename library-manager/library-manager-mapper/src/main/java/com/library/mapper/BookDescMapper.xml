@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.library.mapper.BookDescMapper" >
   <resultMap id="BaseResultMap" type="com.library.pojo.BookDesc" >
-    <id column="bid" property="bid" jdbcType="BIGINT" />
+    <id column="id" property="id" jdbcType="BIGINT" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.library.pojo.BookDesc" extends="BaseResultMap" >
     <result column="author_intro" property="authorIntro" jdbcType="LONGVARCHAR" />
     <result column="summary" property="summary" jdbcType="LONGVARCHAR" />
-    <result column="catelog" property="catelog" jdbcType="LONGVARCHAR" />
+    <result column="catalog" property="catalog" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -68,10 +68,10 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    bid
+    id
   </sql>
   <sql id="Blob_Column_List" >
-    author_intro, summary, catelog
+    author_intro, summary, catalog
   </sql>
   <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.library.pojo.BookDescExample" >
     select
@@ -109,11 +109,11 @@
     ,
     <include refid="Blob_Column_List" />
     from book_desc
-    where bid = #{bid,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from book_desc
-    where bid = #{bid,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
   </delete>
   <delete id="deleteByExample" parameterType="com.library.pojo.BookDescExample" >
     delete from book_desc
@@ -122,16 +122,16 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.library.pojo.BookDesc" >
-    insert into book_desc (bid, author_intro, summary, 
-      catelog)
-    values (#{bid,jdbcType=BIGINT}, #{authorIntro,jdbcType=LONGVARCHAR}, #{summary,jdbcType=LONGVARCHAR}, 
-      #{catelog,jdbcType=LONGVARCHAR})
+    insert into book_desc (id, author_intro, summary, 
+      catalog)
+    values (#{id,jdbcType=BIGINT}, #{authorIntro,jdbcType=LONGVARCHAR}, #{summary,jdbcType=LONGVARCHAR}, 
+      #{catalog,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.library.pojo.BookDesc" >
     insert into book_desc
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="bid != null" >
-        bid,
+      <if test="id != null" >
+        id,
       </if>
       <if test="authorIntro != null" >
         author_intro,
@@ -139,13 +139,13 @@
       <if test="summary != null" >
         summary,
       </if>
-      <if test="catelog != null" >
-        catelog,
+      <if test="catalog != null" >
+        catalog,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="bid != null" >
-        #{bid,jdbcType=BIGINT},
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
       </if>
       <if test="authorIntro != null" >
         #{authorIntro,jdbcType=LONGVARCHAR},
@@ -153,8 +153,8 @@
       <if test="summary != null" >
         #{summary,jdbcType=LONGVARCHAR},
       </if>
-      <if test="catelog != null" >
-        #{catelog,jdbcType=LONGVARCHAR},
+      <if test="catalog != null" >
+        #{catalog,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -167,8 +167,8 @@
   <update id="updateByExampleSelective" parameterType="map" >
     update book_desc
     <set >
-      <if test="record.bid != null" >
-        bid = #{record.bid,jdbcType=BIGINT},
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
       </if>
       <if test="record.authorIntro != null" >
         author_intro = #{record.authorIntro,jdbcType=LONGVARCHAR},
@@ -176,8 +176,8 @@
       <if test="record.summary != null" >
         summary = #{record.summary,jdbcType=LONGVARCHAR},
       </if>
-      <if test="record.catelog != null" >
-        catelog = #{record.catelog,jdbcType=LONGVARCHAR},
+      <if test="record.catalog != null" >
+        catalog = #{record.catalog,jdbcType=LONGVARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -186,17 +186,17 @@
   </update>
   <update id="updateByExampleWithBLOBs" parameterType="map" >
     update book_desc
-    set bid = #{record.bid,jdbcType=BIGINT},
+    set id = #{record.id,jdbcType=BIGINT},
       author_intro = #{record.authorIntro,jdbcType=LONGVARCHAR},
       summary = #{record.summary,jdbcType=LONGVARCHAR},
-      catelog = #{record.catelog,jdbcType=LONGVARCHAR}
+      catalog = #{record.catalog,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
     update book_desc
-    set bid = #{record.bid,jdbcType=BIGINT}
+    set id = #{record.id,jdbcType=BIGINT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -210,17 +210,17 @@
       <if test="summary != null" >
         summary = #{summary,jdbcType=LONGVARCHAR},
       </if>
-      <if test="catelog != null" >
-        catelog = #{catelog,jdbcType=LONGVARCHAR},
+      <if test="catalog != null" >
+        catalog = #{catalog,jdbcType=LONGVARCHAR},
       </if>
     </set>
-    where bid = #{bid,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.library.pojo.BookDesc" >
     update book_desc
     set author_intro = #{authorIntro,jdbcType=LONGVARCHAR},
       summary = #{summary,jdbcType=LONGVARCHAR},
-      catelog = #{catelog,jdbcType=LONGVARCHAR}
-    where bid = #{bid,jdbcType=BIGINT}
+      catalog = #{catalog,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

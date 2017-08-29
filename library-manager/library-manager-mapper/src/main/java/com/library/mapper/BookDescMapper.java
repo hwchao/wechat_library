@@ -10,7 +10,7 @@ public interface BookDescMapper {
 
     int deleteByExample(BookDescExample example);
 
-    int deleteByPrimaryKey(Long bid);
+    int deleteByPrimaryKey(Long id);
 
     int insert(BookDesc record);
 
@@ -20,7 +20,7 @@ public interface BookDescMapper {
 
     List<BookDesc> selectByExample(BookDescExample example);
 
-    BookDesc selectByPrimaryKey(Long bid);
+    BookDesc selectByPrimaryKey(Long id);
 
     int updateByExampleSelective(@Param("record") BookDesc record, @Param("example") BookDescExample example);
 

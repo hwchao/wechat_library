@@ -1,11 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<link href="/js/kindeditor-4.1.10/themes/default/default.css"
-	type="text/css" rel="stylesheet">
-<script type="text/javascript" charset="utf-8"
-	src="/js/kindeditor-4.1.10/kindeditor-all-min.js"></script>
-<script type="text/javascript" charset="utf-8"
-	src="/js/kindeditor-4.1.10/lang/zh_CN.js"></script>
+<link href="/js/kindeditor-4.1.10/themes/default/default.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" src="/js/kindeditor-4.1.10/kindeditor-all-min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/kindeditor-4.1.10/lang/zh_CN.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/common.js"></script>
 <div style="padding: 10px 10px 10px 10px">
 	<form id="itemeEditForm" class="itemForm" method="post">
 		<input type="hidden" name="id" />
@@ -39,8 +37,8 @@
 			</tr>
 			<tr>
 				<td>出版日期:</td>
-				<td><input class="easyui-date" type="text" name="pubdate"
-					data-options="" /></td>
+				<td><input class="easyui-datebox" type="text" name="pubdate"
+					data-options="required:true" /></td>
 			</tr>
 			<tr>
 				<td>出版社:</td>
@@ -64,7 +62,7 @@
 			</tr>
 			<tr>
 				<td>译者:</td>
-				<td><input class="easyui-textbox" type="text" name="translater"
+				<td><input class="easyui-textbox" type="text" name="translator"
 					data-options="required:false" /></td>
 			</tr>
 			<tr>
@@ -90,19 +88,26 @@
 	</div>
 </div>
 <script type="text/javascript">
+	$(function(){
+		$('.easyui-datebox').datebox({
+		    required:true
+		});
+	})
 	function submitForm() {
 		if (!$('#itemeEditForm').form('validate')) {
 			$.messager.alert('提示', '表单还未填写完成!');
 			return;
 		}
-		itemEditEditor.sync();
+		/* itemEditEditor.sync(); */
 
 		$.post("/book/update", $("#itemeEditForm").serialize(), function(data) {
 			if (data.status == 200) {
-				$.messager.alert('提示', '修改商品成功!', 'info', function() {
+				$.messager.alert('提示', '修改信息成功!', 'info', function() {
 					$("#itemEditWindow").window('close');
 					$("#itemList").datagrid("reload");
 				});
+			}else{
+				$.messager.alert('提示','修改信息失败','info',function(){});
 			}
 		});
 	}

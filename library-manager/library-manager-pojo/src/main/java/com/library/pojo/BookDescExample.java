@@ -104,63 +104,63 @@ public class BookDescExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andBidIsNull() {
-            addCriterion("bid is null");
+        public Criteria andIdIsNull() {
+            addCriterion("id is null");
             return (Criteria) this;
         }
 
-        public Criteria andBidIsNotNull() {
-            addCriterion("bid is not null");
+        public Criteria andIdIsNotNull() {
+            addCriterion("id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andBidEqualTo(Long value) {
-            addCriterion("bid =", value, "bid");
+        public Criteria andIdEqualTo(Long value) {
+            addCriterion("id =", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andBidNotEqualTo(Long value) {
-            addCriterion("bid <>", value, "bid");
+        public Criteria andIdNotEqualTo(Long value) {
+            addCriterion("id <>", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andBidGreaterThan(Long value) {
-            addCriterion("bid >", value, "bid");
+        public Criteria andIdGreaterThan(Long value) {
+            addCriterion("id >", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andBidGreaterThanOrEqualTo(Long value) {
-            addCriterion("bid >=", value, "bid");
+        public Criteria andIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("id >=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andBidLessThan(Long value) {
-            addCriterion("bid <", value, "bid");
+        public Criteria andIdLessThan(Long value) {
+            addCriterion("id <", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andBidLessThanOrEqualTo(Long value) {
-            addCriterion("bid <=", value, "bid");
+        public Criteria andIdLessThanOrEqualTo(Long value) {
+            addCriterion("id <=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andBidIn(List<Long> values) {
-            addCriterion("bid in", values, "bid");
+        public Criteria andIdIn(List<Long> values) {
+            addCriterion("id in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andBidNotIn(List<Long> values) {
-            addCriterion("bid not in", values, "bid");
+        public Criteria andIdNotIn(List<Long> values) {
+            addCriterion("id not in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andBidBetween(Long value1, Long value2) {
-            addCriterion("bid between", value1, value2, "bid");
+        public Criteria andIdBetween(Long value1, Long value2) {
+            addCriterion("id between", value1, value2, "id");
             return (Criteria) this;
         }
 
-        public Criteria andBidNotBetween(Long value1, Long value2) {
-            addCriterion("bid not between", value1, value2, "bid");
+        public Criteria andIdNotBetween(Long value1, Long value2) {
+            addCriterion("id not between", value1, value2, "id");
             return (Criteria) this;
         }
     }

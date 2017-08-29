@@ -48,7 +48,13 @@ public class BookController {
 		} catch (Exception e) {
 			return TaotaoResult.build(500, "删除失败");
 		}
-		
+	}
+	@RequestMapping("/update")
+	@ResponseBody
+	public TaotaoResult updateBook(Book book){
+		TaotaoResult result = bookService.updateBook(book);
+		System.out.println(book);
+		return result;
 	}
 	
 	@InitBinder    

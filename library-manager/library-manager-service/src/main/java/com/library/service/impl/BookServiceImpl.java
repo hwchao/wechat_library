@@ -9,6 +9,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.library.common.pojo.EUDataGridResult;
 import com.library.common.pojo.TaotaoResult;
+import com.library.common.utils.ExceptionUtil;
 import com.library.common.utils.IDUtils;
 import com.library.mapper.BookMapper;
 import com.library.pojo.Book;
@@ -44,6 +45,18 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public void deleteBookById(long id) {
 		bookMapper.deleteByPrimaryKey(id);
+	}
+
+	@Override
+	public TaotaoResult updateBook(Book book) {
+		
+		try{
+			bookMapper.updateByPrimaryKeySelective(book);
+			return TaotaoResult.ok();
+		}catch (Exception e) {
+			TaotaoResult.build(500, ExceptionUtil.getStackTrace(e));
+		}
+		return TaotaoResult.build(400, "修改失败");
 	}
 
 }

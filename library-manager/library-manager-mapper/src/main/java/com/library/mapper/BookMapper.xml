@@ -11,7 +11,7 @@
     <result column="pages" property="pages" jdbcType="INTEGER" />
     <result column="image" property="image" jdbcType="VARCHAR" />
     <result column="binding" property="binding" jdbcType="CHAR" />
-    <result column="translater" property="translater" jdbcType="VARCHAR" />
+    <result column="translator" property="translator" jdbcType="VARCHAR" />
     <result column="isbn13" property="isbn13" jdbcType="CHAR" />
     <result column="isbn10" property="isbn10" jdbcType="CHAR" />
     <result column="price" property="price" jdbcType="DECIMAL" />
@@ -79,7 +79,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, cid, title, subtitle, author, publisher, pages, image, binding, translater, isbn13, 
+    id, cid, title, subtitle, author, publisher, pages, image, binding, translator, isbn13, 
     isbn10, price, pubdate, num_raters, average, num
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.library.pojo.BookExample" >
@@ -116,13 +116,13 @@
     insert into book (id, cid, title, 
       subtitle, author, publisher, 
       pages, image, binding, 
-      translater, isbn13, isbn10, 
+      translator, isbn13, isbn10, 
       price, pubdate, num_raters, 
       average, num)
     values (#{id,jdbcType=BIGINT}, #{cid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
       #{subtitle,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, #{publisher,jdbcType=VARCHAR}, 
       #{pages,jdbcType=INTEGER}, #{image,jdbcType=VARCHAR}, #{binding,jdbcType=CHAR}, 
-      #{translater,jdbcType=VARCHAR}, #{isbn13,jdbcType=CHAR}, #{isbn10,jdbcType=CHAR}, 
+      #{translator,jdbcType=VARCHAR}, #{isbn13,jdbcType=CHAR}, #{isbn10,jdbcType=CHAR}, 
       #{price,jdbcType=DECIMAL}, #{pubdate,jdbcType=DATE}, #{numRaters,jdbcType=INTEGER}, 
       #{average,jdbcType=REAL}, #{num,jdbcType=INTEGER})
   </insert>
@@ -156,8 +156,8 @@
       <if test="binding != null" >
         binding,
       </if>
-      <if test="translater != null" >
-        translater,
+      <if test="translator != null" >
+        translator,
       </if>
       <if test="isbn13 != null" >
         isbn13,
@@ -209,8 +209,8 @@
       <if test="binding != null" >
         #{binding,jdbcType=CHAR},
       </if>
-      <if test="translater != null" >
-        #{translater,jdbcType=VARCHAR},
+      <if test="translator != null" >
+        #{translator,jdbcType=VARCHAR},
       </if>
       <if test="isbn13 != null" >
         #{isbn13,jdbcType=CHAR},
@@ -271,8 +271,8 @@
       <if test="record.binding != null" >
         binding = #{record.binding,jdbcType=CHAR},
       </if>
-      <if test="record.translater != null" >
-        translater = #{record.translater,jdbcType=VARCHAR},
+      <if test="record.translator != null" >
+        translator = #{record.translator,jdbcType=VARCHAR},
       </if>
       <if test="record.isbn13 != null" >
         isbn13 = #{record.isbn13,jdbcType=CHAR},
@@ -311,7 +311,7 @@
       pages = #{record.pages,jdbcType=INTEGER},
       image = #{record.image,jdbcType=VARCHAR},
       binding = #{record.binding,jdbcType=CHAR},
-      translater = #{record.translater,jdbcType=VARCHAR},
+      translator = #{record.translator,jdbcType=VARCHAR},
       isbn13 = #{record.isbn13,jdbcType=CHAR},
       isbn10 = #{record.isbn10,jdbcType=CHAR},
       price = #{record.price,jdbcType=DECIMAL},
@@ -350,8 +350,8 @@
       <if test="binding != null" >
         binding = #{binding,jdbcType=CHAR},
       </if>
-      <if test="translater != null" >
-        translater = #{translater,jdbcType=VARCHAR},
+      <if test="translator != null" >
+        translator = #{translator,jdbcType=VARCHAR},
       </if>
       <if test="isbn13 != null" >
         isbn13 = #{isbn13,jdbcType=CHAR},
@@ -387,7 +387,7 @@
       pages = #{pages,jdbcType=INTEGER},
       image = #{image,jdbcType=VARCHAR},
       binding = #{binding,jdbcType=CHAR},
-      translater = #{translater,jdbcType=VARCHAR},
+      translator = #{translator,jdbcType=VARCHAR},
       isbn13 = #{isbn13,jdbcType=CHAR},
       isbn10 = #{isbn10,jdbcType=CHAR},
       price = #{price,jdbcType=DECIMAL},

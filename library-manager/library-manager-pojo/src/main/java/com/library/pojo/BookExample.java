@@ -1,5 +1,6 @@
 package com.library.pojo;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -732,73 +733,73 @@ public class BookExample {
             return (Criteria) this;
         }
 
-        public Criteria andTranslaterIsNull() {
-            addCriterion("translater is null");
+        public Criteria andTranslatorIsNull() {
+            addCriterion("translator is null");
             return (Criteria) this;
         }
 
-        public Criteria andTranslaterIsNotNull() {
-            addCriterion("translater is not null");
+        public Criteria andTranslatorIsNotNull() {
+            addCriterion("translator is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTranslaterEqualTo(String value) {
-            addCriterion("translater =", value, "translater");
+        public Criteria andTranslatorEqualTo(String value) {
+            addCriterion("translator =", value, "translator");
             return (Criteria) this;
         }
 
-        public Criteria andTranslaterNotEqualTo(String value) {
-            addCriterion("translater <>", value, "translater");
+        public Criteria andTranslatorNotEqualTo(String value) {
+            addCriterion("translator <>", value, "translator");
             return (Criteria) this;
         }
 
-        public Criteria andTranslaterGreaterThan(String value) {
-            addCriterion("translater >", value, "translater");
+        public Criteria andTranslatorGreaterThan(String value) {
+            addCriterion("translator >", value, "translator");
             return (Criteria) this;
         }
 
-        public Criteria andTranslaterGreaterThanOrEqualTo(String value) {
-            addCriterion("translater >=", value, "translater");
+        public Criteria andTranslatorGreaterThanOrEqualTo(String value) {
+            addCriterion("translator >=", value, "translator");
             return (Criteria) this;
         }
 
-        public Criteria andTranslaterLessThan(String value) {
-            addCriterion("translater <", value, "translater");
+        public Criteria andTranslatorLessThan(String value) {
+            addCriterion("translator <", value, "translator");
             return (Criteria) this;
         }
 
-        public Criteria andTranslaterLessThanOrEqualTo(String value) {
-            addCriterion("translater <=", value, "translater");
+        public Criteria andTranslatorLessThanOrEqualTo(String value) {
+            addCriterion("translator <=", value, "translator");
             return (Criteria) this;
         }
 
-        public Criteria andTranslaterLike(String value) {
-            addCriterion("translater like", value, "translater");
+        public Criteria andTranslatorLike(String value) {
+            addCriterion("translator like", value, "translator");
             return (Criteria) this;
         }
 
-        public Criteria andTranslaterNotLike(String value) {
-            addCriterion("translater not like", value, "translater");
+        public Criteria andTranslatorNotLike(String value) {
+            addCriterion("translator not like", value, "translator");
             return (Criteria) this;
         }
 
-        public Criteria andTranslaterIn(List<String> values) {
-            addCriterion("translater in", values, "translater");
+        public Criteria andTranslatorIn(List<String> values) {
+            addCriterion("translator in", values, "translator");
             return (Criteria) this;
         }
 
-        public Criteria andTranslaterNotIn(List<String> values) {
-            addCriterion("translater not in", values, "translater");
+        public Criteria andTranslatorNotIn(List<String> values) {
+            addCriterion("translator not in", values, "translator");
             return (Criteria) this;
         }
 
-        public Criteria andTranslaterBetween(String value1, String value2) {
-            addCriterion("translater between", value1, value2, "translater");
+        public Criteria andTranslatorBetween(String value1, String value2) {
+            addCriterion("translator between", value1, value2, "translator");
             return (Criteria) this;
         }
 
-        public Criteria andTranslaterNotBetween(String value1, String value2) {
-            addCriterion("translater not between", value1, value2, "translater");
+        public Criteria andTranslatorNotBetween(String value1, String value2) {
+            addCriterion("translator not between", value1, value2, "translator");
             return (Criteria) this;
         }
 
@@ -952,52 +953,52 @@ public class BookExample {
             return (Criteria) this;
         }
 
-        public Criteria andPriceEqualTo(Long value) {
+        public Criteria andPriceEqualTo(BigDecimal value) {
             addCriterion("price =", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceNotEqualTo(Long value) {
+        public Criteria andPriceNotEqualTo(BigDecimal value) {
             addCriterion("price <>", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceGreaterThan(Long value) {
+        public Criteria andPriceGreaterThan(BigDecimal value) {
             addCriterion("price >", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceGreaterThanOrEqualTo(Long value) {
+        public Criteria andPriceGreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("price >=", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceLessThan(Long value) {
+        public Criteria andPriceLessThan(BigDecimal value) {
             addCriterion("price <", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceLessThanOrEqualTo(Long value) {
+        public Criteria andPriceLessThanOrEqualTo(BigDecimal value) {
             addCriterion("price <=", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceIn(List<Long> values) {
+        public Criteria andPriceIn(List<BigDecimal> values) {
             addCriterion("price in", values, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceNotIn(List<Long> values) {
+        public Criteria andPriceNotIn(List<BigDecimal> values) {
             addCriterion("price not in", values, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceBetween(Long value1, Long value2) {
+        public Criteria andPriceBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("price between", value1, value2, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceNotBetween(Long value1, Long value2) {
+        public Criteria andPriceNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("price not between", value1, value2, "price");
             return (Criteria) this;
         }

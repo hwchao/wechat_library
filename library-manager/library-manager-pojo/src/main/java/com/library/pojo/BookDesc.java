@@ -1,20 +1,20 @@
 package com.library.pojo;
 
 public class BookDesc {
-    private Long bid;
+    private Long id;
 
     private String authorIntro;
 
     private String summary;
 
-    private String catelog;
+    private String catalog;
 
-    public Long getBid() {
-        return bid;
+    public Long getId() {
+        return id;
     }
 
-    public void setBid(Long bid) {
-        this.bid = bid;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getAuthorIntro() {
@@ -33,11 +33,11 @@ public class BookDesc {
         this.summary = summary == null ? null : summary.trim();
     }
 
-    public String getCatelog() {
-        return catelog;
+    public String getCatalog() {
+        return catalog;
     }
 
-    public void setCatelog(String catelog) {
-        this.catelog = catelog == null ? null : catelog.trim();
+    public void setCatalog(String catalog) {
+        this.catalog = catalog == null ? null : catalog.trim();
     }
 }

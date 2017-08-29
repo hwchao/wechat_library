@@ -6,15 +6,15 @@
 		<tr>
 			<th data-options="field:'ck',checkbox:true"></th>
 			<th data-options="field:'id',width:120,align:'center',">图书ID</th>
-			<th data-options="field:'title',width:120,align:'center',">书名</th>
-			<th data-options="field:'subtitle',width:100,align:'center',">子书名</th>
-			<th data-options="field:'author',width:80,align:'center',">作者</th>
+			<th data-options="field:'title',width:120,align:'left',">书名</th>
+			<th data-options="field:'subtitle',width:100,align:'left',">子书名</th>
+			<th data-options="field:'author',width:80,align:'left',">作者</th>
 			<th data-options="field:'pubdate',width:100,align:'center',formatter:TAOTAO.formatDate">出版日期</th>
-			<th data-options="field:'publisher',width:110,align:'center'">出版社</th>
+			<th data-options="field:'publisher',width:110,align:'left'">出版社</th>
 			<th data-options="field:'price',width:60,align:'center',">价格</th>
 			<th data-options="field:'pages',width:50,align:'center'">页数</th>
-			<th data-options="field:'bingding',width:50,align:'center'">装订</th>
-			<th data-options="field:'translater',width:100,align:'center'">译者</th>
+			<th data-options="field:'binding',width:50,align:'center'">装订</th>
+			<th data-options="field:'translator',width:100,align:'left'">译者</th>
 			<th data-options="field:'isbn13',width:80,align:'center'">ISBN13</th>
 			<th data-options="field:'isbn10',width:80,align:'center'">ISBN10</th>
 			<th data-options="field:'num',width:50,align:'center'">馆藏量</th>
@@ -61,6 +61,7 @@ var toolbar = [{
             onLoad: function() {
                 /*获取选中列的数据*/
                 var data = $("#itemList").datagrid('getSelected');
+                data.pubdate = TAOTAO.formatDate(data.pubdate); 
                 $("#itemeEditForm").form("load", data);
             }
         }).window("open");
@@ -124,7 +125,7 @@ var toolbar = [{
 },
 {
     text: '上架',
-    iconCls: 'icon-remove',
+    iconCls: 'icon-add',
     handler: function() {
         var ids = getSelectionsIds();
         if (ids.length == 0) {

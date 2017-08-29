@@ -8,4 +8,5 @@ public interface BookService {
 	public EUDataGridResult getBooks(int page, int rows);
 	public TaotaoResult insertBook(Book book) throws Exception;
 	public void deleteBookById(long id);
+	public TaotaoResult updateBook(Book book);
 }
