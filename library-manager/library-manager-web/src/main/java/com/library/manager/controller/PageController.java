@@ -1,4 +1,4 @@
-package com.library.controller;
+package com.library.manager.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;

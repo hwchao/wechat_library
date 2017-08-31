@@ -15,6 +15,13 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserMapper userMapper;
 	
+	/**
+	 * 
+	 * 功能：获取用户列表
+	 * 作者：hwchao
+	 * 修改时间：2017年8月31日下午3:43:42
+	 * @see com.library.service.UserService#getUserList()
+	 */
 	@Override
 	public List<User> getUserList() {
 		UserExample example = new UserExample();

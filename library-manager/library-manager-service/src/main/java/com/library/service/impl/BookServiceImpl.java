@@ -20,12 +20,19 @@ import com.library.service.BookService;
 public class BookServiceImpl implements BookService {
 
 	@Autowired BookMapper bookMapper;
+	
+	/**
+	 * 
+	 * 功能：获取所有书籍
+	 * 作者：hwchao
+	 * 修改时间：2017年8月31日下午3:41:20
+	 * @see com.library.service.BookService#getBooks(int, int)
+	 */
 	@Override
 	public EUDataGridResult getBooks(int page, int rows) {
 		BookExample bookExample = new BookExample();
 		PageHelper.startPage(page,rows);
 		List<Book> booklist = bookMapper.selectByExample(bookExample);
-		
 		//创建一个返回值对象
 		EUDataGridResult result = new EUDataGridResult();
 		result.setRows(booklist);
@@ -34,22 +41,39 @@ public class BookServiceImpl implements BookService {
 		result.setTotal(pageInfo.getTotal());
 		return result;
 	}
-	
+	/**
+	 * 
+	 * 功能：添加书籍
+	 * 作者：hwchao
+	 * 修改时间：2017年8月31日下午3:41:37
+	 * @see com.library.service.BookService#insertBook(com.library.pojo.Book)
+	 */
 	@Override
 	public TaotaoResult insertBook(Book book) throws Exception{
 		book.setId(IDUtils.genItemId());
 		bookMapper.insertSelective(book);
 		return TaotaoResult.ok();
 	}
-	
+	/**
+	 * 
+	 * 功能：通过主键删除书籍
+	 * 作者：hwchao
+	 * 修改时间：2017年8月31日下午3:41:56
+	 * @see com.library.service.BookService#deleteBookById(long)
+	 */
 	@Override
 	public void deleteBookById(long id) {
 		bookMapper.deleteByPrimaryKey(id);
 	}
-
+	/**
+	 * 
+	 * 功能：通过主键修改书籍信息
+	 * 作者：hwchao
+	 * 修改时间：2017年8月31日下午3:42:25
+	 * @see com.library.service.BookService#updateBook(com.library.pojo.Book)
+	 */
 	@Override
 	public TaotaoResult updateBook(Book book) {
-		
 		try{
 			bookMapper.updateByPrimaryKeySelective(book);
 			return TaotaoResult.ok();

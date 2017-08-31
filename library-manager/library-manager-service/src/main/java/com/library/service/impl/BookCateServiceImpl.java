@@ -26,7 +26,11 @@ public class BookCateServiceImpl implements BookCateService {
 	private BookCateMapper bookCateMapper;
 	
 	/**
-	 * 查询分类节点信息
+	 * 
+	 * 功能：获取所有节点信息
+	 * 作者：hwchao
+	 * 修改时间：2017年8月31日下午3:40:55
+	 * @see com.library.service.BookCateService#getCategoryList(java.lang.Integer)
 	 */
 	@Override
 	public List<EUTreeNode> getCategoryList(Integer parentId) {
@@ -49,7 +53,10 @@ public class BookCateServiceImpl implements BookCateService {
 		return resultList;
 	}
 	/**
-	 * 添加新的节点
+	 * 
+	 * 功能：添加新节点
+	 * 作者：hwchao
+	 * 修改时间：2017年8月23日下午9:13:27
 	 */
 	@Override
 	public TaotaoResult insertContentCategory(Integer parentId, String name) {
@@ -75,6 +82,14 @@ public class BookCateServiceImpl implements BookCateService {
 		//返回结果
 		return TaotaoResult.ok(bookCate);
 	}
+	
+	/**
+	 * 
+	 * 功能：更新节点描述
+	 * 作者：hwchao
+	 * 修改时间：2017年8月31日下午3:40:00
+	 * @see com.library.service.BookCateService#updateBookCate(java.lang.Integer, java.lang.String)
+	 */
 	@Override
 	public TaotaoResult updateBookCate(Integer id, String name) {
 		BookCate bookCate = new BookCate();
@@ -83,6 +98,14 @@ public class BookCateServiceImpl implements BookCateService {
 		bookCateMapper.updateByPrimaryKeySelective(bookCate);
 		return TaotaoResult.ok();
 	}
+	
+	/**
+	 * 
+	 * 功能：删除节点信息
+	 * 作者：hwchao
+	 * 修改时间：2017年8月31日下午3:40:29
+	 * @see com.library.service.BookCateService#deleteBookCate(java.lang.Integer, java.lang.Integer)
+	 */
 	@Override
 	public TaotaoResult deleteBookCate(Integer parentId, Integer id) {
 		
