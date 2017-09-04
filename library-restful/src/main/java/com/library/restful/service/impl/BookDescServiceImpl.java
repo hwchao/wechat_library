@@ -5,10 +5,10 @@ import org.springframework.stereotype.Service;
 
 import com.library.mapper.BookDescMapper;
 import com.library.pojo.BookDesc;
-import com.library.restful.service.DescService;
+import com.library.restful.service.BookDescService;
 
 @Service
-public class DescServiceImpl implements DescService {
+public class BookDescServiceImpl implements BookDescService {
 
 	@Autowired
 	BookDescMapper bookDescMapper;

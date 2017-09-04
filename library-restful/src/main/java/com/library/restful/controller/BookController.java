@@ -13,7 +13,7 @@ import com.library.pojo.Book;
 import com.library.pojo.BookDesc;
 import com.library.restful.pojo.ResultType;
 import com.library.restful.service.BookService;
-import com.library.restful.service.DescService;
+import com.library.restful.service.BookDescService;
 
 @Controller
 @RequestMapping("/book")
@@ -22,7 +22,7 @@ public class BookController {
 	@Autowired
 	BookService bookService;
 	@Autowired
-	DescService descService;
+	BookDescService descService;
 	
 	@RequestMapping("/{id}")
 	@ResponseBody
