@@ -216,6 +216,7 @@ var TT = TAOTAO = {
 			  }
 		  });
     },
+    
     getSelectionsIds : function (select){
     	var list = $(select);
     	var sels = list.datagrid("getSelections");
