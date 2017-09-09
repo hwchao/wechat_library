@@ -16,6 +16,12 @@ public class BookCateController {
 	@Autowired
 	BookCateService bookCateService;
 	
+	/**
+	 * 
+	 * 功能：获取分类的父节点以及它的子节点
+	 * 作者：hwchao
+	 * 修改时间：2017年9月9日下午12:01:49
+	 */
 	@RequestMapping("/list")
 	@ResponseBody
 	public ResultType getCateByParentId(@RequestParam(value="id",defaultValue="0") Integer parentId){
