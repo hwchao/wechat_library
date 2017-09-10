@@ -1,12 +1,10 @@
 package com.library.restful.service;
 
-import java.util.List;
-
 import com.library.pojo.Book;
+import com.library.restful.pojo.ResultType;
 
 public interface BookService {
 	
 	public Book getBookById(long id);
-	public List<Book> getBooksByCate(int cateId);
-	
+	public ResultType getBooksByCate(int cateId, int page, int rows);
 }

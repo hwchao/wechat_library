@@ -5,10 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
 import com.library.mapper.BookMapper;
 import com.library.pojo.Book;
 import com.library.pojo.BookExample;
 import com.library.pojo.BookExample.Criteria;
+import com.library.restful.pojo.ResultType;
 import com.library.restful.service.BookService;
 
 @Service
@@ -31,18 +33,20 @@ public class BookServiceImpl implements BookService{
 	}
 	/**
 	 * 
-	 * 功能：通过分类id获得书籍列表
+	 * 功能：通过分类id获得书籍列表,
+	 * 		传入参数 CateId 分类的Id, page 起始页， rows 每页的大小
 	 * 作者：hwchao
 	 * 修改时间：2017年9月3日下午4:59:40
 	 * @see com.library.restful.service.BookService#getBooksByCate(int)
 	 */
 	@Override
-	public List<Book> getBooksByCate(int cateId) {
+	public ResultType getBooksByCate(int cateId, int page, int rows) {
 		BookExample example = new BookExample();
 		Criteria criteria = example.createCriteria();
 		criteria.andCidEqualTo(cateId);
+		PageHelper.startPage(page, rows);
 		List<Book> books = bookMapper.selectByExample(example);
-		return books;
+		return ResultType.ok(books);
 	}
 
 }

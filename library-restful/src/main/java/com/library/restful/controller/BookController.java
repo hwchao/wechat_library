@@ -34,4 +34,11 @@ public class BookController {
 		map.put("desc", bookDesc);
 		return ResultType.ok(map);
 	}
+	
+	@RequestMapping("/cate/{id}")
+	@ResponseBody
+	public ResultType getBooksByCateId(@PathVariable int id, int page, int rows){
+		ResultType result = bookService.getBooksByCate(id, page, rows);
+		return result;
+	}
 }
