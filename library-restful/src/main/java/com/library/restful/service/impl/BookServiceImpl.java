@@ -48,5 +48,30 @@ public class BookServiceImpl implements BookService{
 		List<Book> books = bookMapper.selectByExample(example);
 		return ResultType.ok(books);
 	}
+	
+	/**
+	 * 
+	 * 功能：通过关键字来搜索图书信息
+	 * 作者：hwchao
+	 * 修改时间：2017年9月12日下午2:03:03
+	 * @see com.library.restful.service.BookService#searchByKey(java.lang.String)
+	 */
+	@Override
+	public ResultType searchByKey(String key,int page, int rows) {
+		//创建查询条件
+		BookExample example = new BookExample();
+        Criteria criteria = example.or();
+		Criteria criteria2 = example.or();
+		Criteria criteria3 = example.or();
+		Criteria criteria4 = example.or();
+		criteria.andTitleLike('%'+key+'%');
+		criteria2.andSubtitleLike('%'+key+'%');
+		criteria3.andIsbn13EqualTo(key);
+		criteria4.andIsbn10EqualTo(key);
+		//设置分页查找
+		PageHelper.startPage(page, rows);
+		List<Book> list= bookMapper.selectByExample(example);
+		return ResultType.ok(list);
+	}
 
 }

@@ -7,4 +7,5 @@ public interface BookService {
 	
 	public Book getBookById(long id);
 	public ResultType getBooksByCate(int cateId, int page, int rows);
+	public ResultType searchByKey(String key,int page,int rows);
 }
