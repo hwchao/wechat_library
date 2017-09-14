@@ -145,6 +145,9 @@
 					<configuration>
 						<port>8080</port>
 						<path>/rest</path>
+						<url>http://101.201.234.94:8080/manager/text</url>
+						<username>tomcat</username>
+						<password>tomcat</password>
 					</configuration>
 				</plugin>
 			</plugins>

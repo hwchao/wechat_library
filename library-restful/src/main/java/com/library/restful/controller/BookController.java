@@ -45,6 +45,19 @@ public class BookController {
 	
 	/**
 	 * 
+	 * 功能：获取书籍的目录信息
+	 * 作者：hwchao
+	 * 修改时间：2017年9月14日上午11:21:17
+	 */
+	@RequestMapping("/bookcatalog/{id}")
+	@ResponseBody
+	public ResultType getBookCatalog(@PathVariable long id){
+		ResultType resultType = bookService.getgetBookCatelogById(id);
+		return resultType;
+	}
+	
+	/**
+	 * 
 	 * 功能：根据分类Id获取该类别书籍
 	 * 作者：hwchao
 	 * 修改时间：2017年9月12日下午2:28:21

@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
+import com.library.mapper.BookDescMapper;
 import com.library.mapper.BookMapper;
 import com.library.pojo.Book;
+import com.library.pojo.BookDesc;
 import com.library.pojo.BookExample;
 import com.library.pojo.BookExample.Criteria;
 import com.library.restful.pojo.ResultType;
@@ -18,6 +20,9 @@ public class BookServiceImpl implements BookService{
 
 	@Autowired 
 	BookMapper bookMapper;
+	
+	@Autowired
+	BookDescMapper bookDescService;
 	
 	/**
 	 * 
@@ -72,6 +77,18 @@ public class BookServiceImpl implements BookService{
 		PageHelper.startPage(page, rows);
 		List<Book> list= bookMapper.selectByExample(example);
 		return ResultType.ok(list);
+	}
+	/**
+	 * 
+	 * 功能：通过书籍id获得图书目录信息
+	 * 作者：hwchao
+	 * 修改时间：2017年9月14日上午11:21:12
+	 * @see com.library.restful.service.BookService#getgetBookCatelogById(long)
+	 */
+	@Override
+	public ResultType getgetBookCatelogById(long id) {
+		BookDesc bookDesc = bookDescService.selectByPrimaryKey(id);
+		return ResultType.ok(bookDesc.getCatalog());
 	}
 
 }
