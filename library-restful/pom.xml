@@ -143,9 +143,8 @@
 					<groupId>org.apache.tomcat.maven</groupId>
 					<artifactId>tomcat7-maven-plugin</artifactId>
 					<configuration>
-						<port>8080</port>
 						<path>/rest</path>
-						<url>http://101.201.234.94:8080/manager/text</url>
+						<url>https://www.huwenchao.cn/manager/text</url>
 						<username>tomcat</username>
 						<password>tomcat</password>
 					</configuration>
