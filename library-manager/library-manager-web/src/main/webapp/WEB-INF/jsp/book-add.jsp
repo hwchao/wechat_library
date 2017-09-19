@@ -75,15 +75,15 @@
 	        </tr>
 	        <tr>
 	        	<td>作者简介:</td>
-	        	<td><input type="text" name="authorIntro" /></td>
+	        	<td><textarea rows="6" cols="50" name="authorIntro"></textarea></td>
 	        </tr>
 	        <tr>
 	        	<td>内容简介:</td>
-	        	<td><input type="text" name="summary"/></td>
+	        	<td><textarea rows="6" cols="50" name="summary"></textarea></td>
 	        </tr>
 	        <tr>
 	        	<td>目录:</td>
-	        	<td><input type="text" name="catalog" /></td>
+	        	<td><textarea rows="6" cols="50" name="catalog"></textarea></td>
 	        </tr>
 	        
 	    </table>
@@ -103,9 +103,10 @@
 	    });
 	    
 	    //创建富文本编辑器
-		itemAddEditor[0] = TAOTAO.createEditor("#itemAddForm [name=authorIntro]");
-		itemAddEditor[1] = TAOTAO.createEditor("#itemAddForm [name=summary]");
-		itemAddEditor[2]= TAOTAO.createEditor("#itemAddForm [name=catalog]");
+		//itemAddEditor[0] = TAOTAO.createEditor("#itemAddForm [name=authorIntro]");
+		//itemAddEditor[1] = TAOTAO.createEditor("#itemAddForm [name=summary]");
+		//itemAddEditor[2]= TAOTAO.createEditor("#itemAddForm [name=catalog]");
+		
 		//初始化单图片上传
 		TAOTAO.initOnePicUpload();
 		//初始化类目选择和图片上传器
@@ -118,9 +119,10 @@
 			$.messager.alert('提示','表单还未填写完成!');
 			return ;
 		}
-		itemAddEditor[0].sync();
-		itemAddEditor[1].sync();
-		itemAddEditor[2].sync();
+		//同步内容
+		//itemAddEditor[0].sync();
+		//itemAddEditor[1].sync();
+		//itemAddEditor[2].sync();
 		$.post("/book/save",$("#itemAddForm").serialize(), function(data){
 			if(data.status == 200){
 				$.messager.alert('提示','新增商品成功!');
