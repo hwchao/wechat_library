@@ -1,7 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib prefix="c1" uri="http://www.hynu.com.cn/mytag" %>
-<%@ taglib prefix="s" uri="/struts-tags" %>
 <HTML>
 	<HEAD>
 		<TITLE>图书 - 当当网</TITLE>

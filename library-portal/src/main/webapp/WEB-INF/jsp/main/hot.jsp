@@ -9,8 +9,8 @@
 	<s:iterator value="books">
 	<div class="second_d_wai">
 		<div class="img">
-			<a href="http://localhost:8080/dangdang/main/book_view?id=${id }"><img
-					src="${pageContext.request.contextPath}/productImages/${product_pic }" border=0 /> </a>
+			<a href="http://localhost:8080/dangdang/main/book_view?id=${id }">
+			<img src="${pageContext.request.contextPath}/productImages/${product_pic }" border=0 /> </a>
 		</div>
 		<div class="shuming">
 			<a href=href='http://localhost:8080/dangdang/main/book_view?id=${id }'>${product_name }</a><a href="#" target="_blank"></a>
