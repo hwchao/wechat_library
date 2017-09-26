@@ -125,8 +125,11 @@
 		//itemAddEditor[2].sync();
 		$.post("/book/save",$("#itemAddForm").serialize(), function(data){
 			if(data.status == 200){
-				$.messager.alert('提示','新增商品成功!');
+				$.messager.alert('提示','新增商品成功!')
+				$("#itemAddWindow").window('close');
+				$("#itemList").datagrid("reload");
 				cleanForm(); //添加成功后清空列表
+			
 			}
 		});
 	}

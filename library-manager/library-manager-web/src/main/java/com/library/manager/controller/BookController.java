@@ -1,5 +1,6 @@
 package com.library.manager.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.library.common.pojo.EUDataGridResult;
@@ -37,8 +39,16 @@ public class BookController {
 	 */
 	@RequestMapping("/list")
 	@ResponseBody
-	public EUDataGridResult getBookList(Integer page, Integer rows) {
-		EUDataGridResult result = bookService.getBooks(page, rows);
+	public EUDataGridResult getBookList(@RequestParam(defaultValue="1")Integer page, Integer rows, @RequestParam(defaultValue="")String id, @RequestParam(defaultValue="") String title,@RequestParam(defaultValue="") String author) {	
+		
+		try {
+			title = new String(title.getBytes("iso8859-1"),"utf-8");
+			author = new String(author.getBytes("iso8859-1"),"utf-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+	
+		EUDataGridResult result = bookService.getBooks(page, rows, id,title,author);
 		return result;
 	}
 	
@@ -88,11 +98,10 @@ public class BookController {
 	@ResponseBody
 	public TaotaoResult updateBook(Book book){
 		TaotaoResult result = bookService.updateBook(book);
-		System.out.println(book);
 		return result;
 	}
 	
-	@InitBinder    
+	@InitBinder
     protected void initBinder(HttpServletRequest request,  
         ServletRequestDataBinder binder) throws Exception {  
         binder.registerCustomEditor(Date.class,   

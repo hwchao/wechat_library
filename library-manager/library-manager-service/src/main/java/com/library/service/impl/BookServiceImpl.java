@@ -14,6 +14,7 @@ import com.library.common.utils.IDUtils;
 import com.library.mapper.BookMapper;
 import com.library.pojo.Book;
 import com.library.pojo.BookExample;
+import com.library.pojo.BookExample.Criteria;
 import com.library.service.BookService;
 
 @Service
@@ -29,8 +30,19 @@ public class BookServiceImpl implements BookService {
 	 * @see com.library.service.BookService#getBooks(int, int)
 	 */
 	@Override
-	public EUDataGridResult getBooks(int page, int rows) {
+	public EUDataGridResult getBooks(int page, int rows, String id, String title, String author) {
 		BookExample bookExample = new BookExample();
+		System.out.println(id +  "****" +title + "****"+author);
+		Criteria criteria = bookExample.createCriteria();
+		if(!"".equals(id)){
+			criteria.andIdEqualTo(Long.parseLong(id));
+		}
+		if(!"".equals(title)){
+			criteria.andTitleLike("%"+title+"%");
+		}
+		if(!"".equals(author)){
+			criteria.andAuthorLike("%"+author+"%");
+		}
 		PageHelper.startPage(page,rows);
 		List<Book> booklist = bookMapper.selectByExample(bookExample);
 		//创建一个返回值对象
