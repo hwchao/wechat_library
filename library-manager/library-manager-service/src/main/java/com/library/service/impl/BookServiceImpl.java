@@ -24,7 +24,7 @@ public class BookServiceImpl implements BookService {
 	
 	/**
 	 * 
-	 * 功能：获取所有书籍
+	 * 功能：获取符合条件的所有书籍
 	 * 作者：hwchao
 	 * 修改时间：2017年8月31日下午3:41:20
 	 * @see com.library.service.BookService#getBooks(int, int)
@@ -32,17 +32,12 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public EUDataGridResult getBooks(int page, int rows, String id, String title, String author) {
 		BookExample bookExample = new BookExample();
-		System.out.println(id +  "****" +title + "****"+author);
+		//添加查询条件
 		Criteria criteria = bookExample.createCriteria();
-		if(!"".equals(id)){
-			criteria.andIdEqualTo(Long.parseLong(id));
-		}
-		if(!"".equals(title)){
-			criteria.andTitleLike("%"+title+"%");
-		}
-		if(!"".equals(author)){
-			criteria.andAuthorLike("%"+author+"%");
-		}
+		if(!"".equals(id)){ criteria.andIdEqualTo(Long.parseLong(id)); }
+		if(!"".equals(title)){ criteria.andTitleLike("%"+title+"%"); }
+		if(!"".equals(author)){ criteria.andAuthorLike("%"+author+"%"); }
+		
 		PageHelper.startPage(page,rows);
 		List<Book> booklist = bookMapper.selectByExample(bookExample);
 		//创建一个返回值对象
@@ -53,6 +48,7 @@ public class BookServiceImpl implements BookService {
 		result.setTotal(pageInfo.getTotal());
 		return result;
 	}
+	
 	/**
 	 * 
 	 * 功能：添加书籍
@@ -66,6 +62,7 @@ public class BookServiceImpl implements BookService {
 		bookMapper.insertSelective(book);
 		return TaotaoResult.ok();
 	}
+	
 	/**
 	 * 
 	 * 功能：通过主键删除书籍
@@ -77,6 +74,7 @@ public class BookServiceImpl implements BookService {
 	public void deleteBookById(long id) {
 		bookMapper.deleteByPrimaryKey(id);
 	}
+	
 	/**
 	 * 
 	 * 功能：通过主键修改书籍信息

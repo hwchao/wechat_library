@@ -33,7 +33,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http:/
   			<groupId>org.apache.tomcat.maven</groupId>
   			<artifactId>tomcat7-maven-plugin</artifactId>
   			<configuration>
-  				<port>80</port>
+  				<port>8080</port>
   				<url>http://localhost/manager/text</url>
   				<username>hwchao</username>
   				<password>hwchao</password>
