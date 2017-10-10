@@ -41,14 +41,14 @@ public class BookController {
 	@ResponseBody
 	public EUDataGridResult getBookList(@RequestParam(defaultValue="1")Integer page, Integer rows, @RequestParam(defaultValue="")String id, @RequestParam(defaultValue="") String title,@RequestParam(defaultValue="") String author) {	
 		
-		try {
+		//将项目部署到tomcat8服务器上时，不需要进行转码，tomcat8默认编码方式就是utf-8
+		try {			
 			title = new String(title.getBytes("iso-8859-1"),"utf-8");
 			author = new String(author.getBytes("iso-8859-1"),"utf-8");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		System.out.println(title + "---" + author);
-		
+		System.out.println(title+"---"+author);
 		EUDataGridResult result = bookService.getBooks(page, rows, id,title,author);
 		return result;
 	}
