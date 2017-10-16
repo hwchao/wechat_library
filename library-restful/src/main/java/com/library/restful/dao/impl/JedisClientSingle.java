@@ -1,7 +1,6 @@
 package com.library.restful.dao.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import com.library.restful.dao.JedisClient;
@@ -9,6 +8,7 @@ import com.library.restful.dao.JedisClient;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
+@Service
 public class JedisClientSingle implements JedisClient{
 	
 	@Autowired

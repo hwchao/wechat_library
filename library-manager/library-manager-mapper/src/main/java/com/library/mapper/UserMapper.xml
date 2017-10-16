@@ -2,14 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.library.mapper.UserMapper" >
   <resultMap id="BaseResultMap" type="com.library.pojo.User" >
-    <id column="id" property="id" jdbcType="BIGINT" />
+    <id column="openid" property="openid" jdbcType="CHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="telephone" property="telephone" jdbcType="CHAR" />
-    <result column="age" property="age" jdbcType="TINYINT" />
+    <result column="birthday" property="birthday" jdbcType="DATE" />
     <result column="email" property="email" jdbcType="VARCHAR" />
-    <result column="avatar_url" property="avatarUrl" jdbcType="VARCHAR" />
     <result column="education" property="education" jdbcType="VARCHAR" />
     <result column="adress" property="adress" jdbcType="VARCHAR" />
+    <result column="idnumber" property="idnumber" jdbcType="CHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -70,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, name, telephone, age, email, avatar_url, education, adress
+    openid, name, telephone, birthday, email, education, adress, idnumber
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.library.pojo.UserExample" >
     select
@@ -86,15 +86,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from user
-    where id = #{id,jdbcType=BIGINT}
+    where openid = #{openid,jdbcType=CHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from user
-    where id = #{id,jdbcType=BIGINT}
+    where openid = #{openid,jdbcType=CHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.library.pojo.UserExample" >
     delete from user
@@ -103,18 +103,18 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.library.pojo.User" >
-    insert into user (id, name, telephone, 
-      age, email, avatar_url, 
-      education, adress)
-    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{telephone,jdbcType=CHAR}, 
-      #{age,jdbcType=TINYINT}, #{email,jdbcType=VARCHAR}, #{avatarUrl,jdbcType=VARCHAR}, 
-      #{education,jdbcType=VARCHAR}, #{adress,jdbcType=VARCHAR})
+    insert into user (openid, name, telephone, 
+      birthday, email, education, 
+      adress, idnumber)
+    values (#{openid,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, #{telephone,jdbcType=CHAR}, 
+      #{birthday,jdbcType=DATE}, #{email,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, 
+      #{adress,jdbcType=VARCHAR}, #{idnumber,jdbcType=CHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.library.pojo.User" >
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
+      <if test="openid != null" >
+        openid,
       </if>
       <if test="name != null" >
         name,
@@ -122,14 +122,11 @@
       <if test="telephone != null" >
         telephone,
       </if>
-      <if test="age != null" >
-        age,
+      <if test="birthday != null" >
+        birthday,
       </if>
       <if test="email != null" >
         email,
-      </if>
-      <if test="avatarUrl != null" >
-        avatar_url,
       </if>
       <if test="education != null" >
         education,
@@ -137,10 +134,13 @@
       <if test="adress != null" >
         adress,
       </if>
+      <if test="idnumber != null" >
+        idnumber,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=BIGINT},
+      <if test="openid != null" >
+        #{openid,jdbcType=CHAR},
       </if>
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
@@ -148,20 +148,20 @@
       <if test="telephone != null" >
         #{telephone,jdbcType=CHAR},
       </if>
-      <if test="age != null" >
-        #{age,jdbcType=TINYINT},
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DATE},
       </if>
       <if test="email != null" >
         #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="avatarUrl != null" >
-        #{avatarUrl,jdbcType=VARCHAR},
       </if>
       <if test="education != null" >
         #{education,jdbcType=VARCHAR},
       </if>
       <if test="adress != null" >
         #{adress,jdbcType=VARCHAR},
+      </if>
+      <if test="idnumber != null" >
+        #{idnumber,jdbcType=CHAR},
       </if>
     </trim>
   </insert>
@@ -174,8 +174,8 @@
   <update id="updateByExampleSelective" parameterType="map" >
     update user
     <set >
-      <if test="record.id != null" >
-        id = #{record.id,jdbcType=BIGINT},
+      <if test="record.openid != null" >
+        openid = #{record.openid,jdbcType=CHAR},
       </if>
       <if test="record.name != null" >
         name = #{record.name,jdbcType=VARCHAR},
@@ -183,20 +183,20 @@
       <if test="record.telephone != null" >
         telephone = #{record.telephone,jdbcType=CHAR},
       </if>
-      <if test="record.age != null" >
-        age = #{record.age,jdbcType=TINYINT},
+      <if test="record.birthday != null" >
+        birthday = #{record.birthday,jdbcType=DATE},
       </if>
       <if test="record.email != null" >
         email = #{record.email,jdbcType=VARCHAR},
-      </if>
-      <if test="record.avatarUrl != null" >
-        avatar_url = #{record.avatarUrl,jdbcType=VARCHAR},
       </if>
       <if test="record.education != null" >
         education = #{record.education,jdbcType=VARCHAR},
       </if>
       <if test="record.adress != null" >
         adress = #{record.adress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idnumber != null" >
+        idnumber = #{record.idnumber,jdbcType=CHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -205,14 +205,14 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update user
-    set id = #{record.id,jdbcType=BIGINT},
+    set openid = #{record.openid,jdbcType=CHAR},
       name = #{record.name,jdbcType=VARCHAR},
       telephone = #{record.telephone,jdbcType=CHAR},
-      age = #{record.age,jdbcType=TINYINT},
+      birthday = #{record.birthday,jdbcType=DATE},
       email = #{record.email,jdbcType=VARCHAR},
-      avatar_url = #{record.avatarUrl,jdbcType=VARCHAR},
       education = #{record.education,jdbcType=VARCHAR},
-      adress = #{record.adress,jdbcType=VARCHAR}
+      adress = #{record.adress,jdbcType=VARCHAR},
+      idnumber = #{record.idnumber,jdbcType=CHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -226,14 +226,11 @@
       <if test="telephone != null" >
         telephone = #{telephone,jdbcType=CHAR},
       </if>
-      <if test="age != null" >
-        age = #{age,jdbcType=TINYINT},
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=DATE},
       </if>
       <if test="email != null" >
         email = #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="avatarUrl != null" >
-        avatar_url = #{avatarUrl,jdbcType=VARCHAR},
       </if>
       <if test="education != null" >
         education = #{education,jdbcType=VARCHAR},
@@ -241,18 +238,21 @@
       <if test="adress != null" >
         adress = #{adress,jdbcType=VARCHAR},
       </if>
+      <if test="idnumber != null" >
+        idnumber = #{idnumber,jdbcType=CHAR},
+      </if>
     </set>
-    where id = #{id,jdbcType=BIGINT}
+    where openid = #{openid,jdbcType=CHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.library.pojo.User" >
     update user
     set name = #{name,jdbcType=VARCHAR},
       telephone = #{telephone,jdbcType=CHAR},
-      age = #{age,jdbcType=TINYINT},
+      birthday = #{birthday,jdbcType=DATE},
       email = #{email,jdbcType=VARCHAR},
-      avatar_url = #{avatarUrl,jdbcType=VARCHAR},
       education = #{education,jdbcType=VARCHAR},
-      adress = #{adress,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=BIGINT}
+      adress = #{adress,jdbcType=VARCHAR},
+      idnumber = #{idnumber,jdbcType=CHAR}
+    where openid = #{openid,jdbcType=CHAR}
   </update>
 </mapper>

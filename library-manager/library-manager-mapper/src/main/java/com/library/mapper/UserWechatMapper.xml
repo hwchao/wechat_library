@@ -2,13 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.library.mapper.UserWechatMapper" >
   <resultMap id="BaseResultMap" type="com.library.pojo.UserWechat" >
-    <id column="uid" property="uid" jdbcType="BIGINT" />
+    <id column="openid" property="openid" jdbcType="CHAR" />
     <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
     <result column="avatar_url" property="avatarUrl" jdbcType="VARCHAR" />
-    <result column="gender" property="gender" jdbcType="VARCHAR" />
-    <result column="povince" property="povince" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="INTEGER" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
     <result column="city" property="city" jdbcType="VARCHAR" />
     <result column="country" property="country" jdbcType="VARCHAR" />
+    <result column="language" property="language" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -69,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    uid, nick_name, avatar_url, gender, povince, city, country
+    openid, nick_name, avatar_url, gender, province, city, country, language
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.library.pojo.UserWechatExample" >
     select
@@ -85,15 +86,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from user_wechat
-    where uid = #{uid,jdbcType=BIGINT}
+    where openid = #{openid,jdbcType=CHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from user_wechat
-    where uid = #{uid,jdbcType=BIGINT}
+    where openid = #{openid,jdbcType=CHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.library.pojo.UserWechatExample" >
     delete from user_wechat
@@ -102,18 +103,18 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.library.pojo.UserWechat" >
-    insert into user_wechat (uid, nick_name, avatar_url, 
-      gender, povince, city, 
-      country)
-    values (#{uid,jdbcType=BIGINT}, #{nickName,jdbcType=VARCHAR}, #{avatarUrl,jdbcType=VARCHAR}, 
-      #{gender,jdbcType=VARCHAR}, #{povince,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
-      #{country,jdbcType=VARCHAR})
+    insert into user_wechat (openid, nick_name, avatar_url, 
+      gender, province, city, 
+      country, language)
+    values (#{openid,jdbcType=CHAR}, #{nickName,jdbcType=VARCHAR}, #{avatarUrl,jdbcType=VARCHAR}, 
+      #{gender,jdbcType=INTEGER}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{country,jdbcType=VARCHAR}, #{language,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.library.pojo.UserWechat" >
     insert into user_wechat
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="uid != null" >
-        uid,
+      <if test="openid != null" >
+        openid,
       </if>
       <if test="nickName != null" >
         nick_name,
@@ -124,8 +125,8 @@
       <if test="gender != null" >
         gender,
       </if>
-      <if test="povince != null" >
-        povince,
+      <if test="province != null" >
+        province,
       </if>
       <if test="city != null" >
         city,
@@ -133,10 +134,13 @@
       <if test="country != null" >
         country,
       </if>
+      <if test="language != null" >
+        language,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="uid != null" >
-        #{uid,jdbcType=BIGINT},
+      <if test="openid != null" >
+        #{openid,jdbcType=CHAR},
       </if>
       <if test="nickName != null" >
         #{nickName,jdbcType=VARCHAR},
@@ -145,16 +149,19 @@
         #{avatarUrl,jdbcType=VARCHAR},
       </if>
       <if test="gender != null" >
-        #{gender,jdbcType=VARCHAR},
+        #{gender,jdbcType=INTEGER},
       </if>
-      <if test="povince != null" >
-        #{povince,jdbcType=VARCHAR},
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
       </if>
       <if test="city != null" >
         #{city,jdbcType=VARCHAR},
       </if>
       <if test="country != null" >
         #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="language != null" >
+        #{language,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -167,8 +174,8 @@
   <update id="updateByExampleSelective" parameterType="map" >
     update user_wechat
     <set >
-      <if test="record.uid != null" >
-        uid = #{record.uid,jdbcType=BIGINT},
+      <if test="record.openid != null" >
+        openid = #{record.openid,jdbcType=CHAR},
       </if>
       <if test="record.nickName != null" >
         nick_name = #{record.nickName,jdbcType=VARCHAR},
@@ -177,16 +184,19 @@
         avatar_url = #{record.avatarUrl,jdbcType=VARCHAR},
       </if>
       <if test="record.gender != null" >
-        gender = #{record.gender,jdbcType=VARCHAR},
+        gender = #{record.gender,jdbcType=INTEGER},
       </if>
-      <if test="record.povince != null" >
-        povince = #{record.povince,jdbcType=VARCHAR},
+      <if test="record.province != null" >
+        province = #{record.province,jdbcType=VARCHAR},
       </if>
       <if test="record.city != null" >
         city = #{record.city,jdbcType=VARCHAR},
       </if>
       <if test="record.country != null" >
         country = #{record.country,jdbcType=VARCHAR},
+      </if>
+      <if test="record.language != null" >
+        language = #{record.language,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -195,13 +205,14 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update user_wechat
-    set uid = #{record.uid,jdbcType=BIGINT},
+    set openid = #{record.openid,jdbcType=CHAR},
       nick_name = #{record.nickName,jdbcType=VARCHAR},
       avatar_url = #{record.avatarUrl,jdbcType=VARCHAR},
-      gender = #{record.gender,jdbcType=VARCHAR},
-      povince = #{record.povince,jdbcType=VARCHAR},
+      gender = #{record.gender,jdbcType=INTEGER},
+      province = #{record.province,jdbcType=VARCHAR},
       city = #{record.city,jdbcType=VARCHAR},
-      country = #{record.country,jdbcType=VARCHAR}
+      country = #{record.country,jdbcType=VARCHAR},
+      language = #{record.language,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -216,10 +227,10 @@
         avatar_url = #{avatarUrl,jdbcType=VARCHAR},
       </if>
       <if test="gender != null" >
-        gender = #{gender,jdbcType=VARCHAR},
+        gender = #{gender,jdbcType=INTEGER},
       </if>
-      <if test="povince != null" >
-        povince = #{povince,jdbcType=VARCHAR},
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
       </if>
       <if test="city != null" >
         city = #{city,jdbcType=VARCHAR},
@@ -227,17 +238,21 @@
       <if test="country != null" >
         country = #{country,jdbcType=VARCHAR},
       </if>
+      <if test="language != null" >
+        language = #{language,jdbcType=VARCHAR},
+      </if>
     </set>
-    where uid = #{uid,jdbcType=BIGINT}
+    where openid = #{openid,jdbcType=CHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.library.pojo.UserWechat" >
     update user_wechat
     set nick_name = #{nickName,jdbcType=VARCHAR},
       avatar_url = #{avatarUrl,jdbcType=VARCHAR},
-      gender = #{gender,jdbcType=VARCHAR},
-      povince = #{povince,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=INTEGER},
+      province = #{province,jdbcType=VARCHAR},
       city = #{city,jdbcType=VARCHAR},
-      country = #{country,jdbcType=VARCHAR}
-    where uid = #{uid,jdbcType=BIGINT}
+      country = #{country,jdbcType=VARCHAR},
+      language = #{language,jdbcType=VARCHAR}
+    where openid = #{openid,jdbcType=CHAR}
   </update>
 </mapper>

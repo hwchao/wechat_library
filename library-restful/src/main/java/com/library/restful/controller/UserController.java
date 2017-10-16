@@ -1,7 +1,6 @@
 package com.library.restful.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.library.pojo.UserWechat;
 import com.library.restful.pojo.ResultType;
 import com.library.restful.service.UserService;
 import com.library.restful.util.WechatUtil;
@@ -19,7 +19,7 @@ public class UserController {
 	
 	@Autowired
 	UserService userService;
-	
+
 	/**
 	 *
 	 * 功能：用户登录
@@ -28,10 +28,12 @@ public class UserController {
 	 */
 	@RequestMapping(value="/login",method=RequestMethod.POST)
 	@ResponseBody
-	public ResultType login(HttpServletRequest request, HttpServletResponse response){
-		String code = request.getParameter("code");
-		WechatUtil.getSessionKeyAndOpenId(code);
-		return ResultType.ok();
+	public ResultType login(String code,UserWechat userWechat) {
+		Map<String,String> map = WechatUtil.getSessionKeyAndOpenId(code); 
+		String openid = map.get("openid");
+		userWechat.setOpenid(openid);
+		ResultType result = userService.saveUserWechat(userWechat);
+		return result;
 	}
 	
 }

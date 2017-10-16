@@ -10,7 +10,7 @@ public interface UserWechatMapper {
 
     int deleteByExample(UserWechatExample example);
 
-    int deleteByPrimaryKey(Long uid);
+    int deleteByPrimaryKey(String openid);
 
     int insert(UserWechat record);
 
@@ -18,7 +18,7 @@ public interface UserWechatMapper {
 
     List<UserWechat> selectByExample(UserWechatExample example);
 
-    UserWechat selectByPrimaryKey(Long uid);
+    UserWechat selectByPrimaryKey(String openid);
 
     int updateByExampleSelective(@Param("record") UserWechat record, @Param("example") UserWechatExample example);
 

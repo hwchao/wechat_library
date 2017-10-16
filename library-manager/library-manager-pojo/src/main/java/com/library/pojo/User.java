@@ -1,28 +1,30 @@
 package com.library.pojo;
 
+import java.util.Date;
+
 public class User {
-    private Long id;
+    private String openid;
 
     private String name;
 
     private String telephone;
 
-    private Byte age;
+    private Date birthday;
 
     private String email;
-
-    private String avatarUrl;
 
     private String education;
 
     private String adress;
 
-    public Long getId() {
-        return id;
+    private String idnumber;
+
+    public String getOpenid() {
+        return openid;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setOpenid(String openid) {
+        this.openid = openid == null ? null : openid.trim();
     }
 
     public String getName() {
@@ -41,12 +43,12 @@ public class User {
         this.telephone = telephone == null ? null : telephone.trim();
     }
 
-    public Byte getAge() {
-        return age;
+    public Date getBirthday() {
+        return birthday;
     }
 
-    public void setAge(Byte age) {
-        this.age = age;
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 
     public String getEmail() {
@@ -55,14 +57,6 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email == null ? null : email.trim();
-    }
-
-    public String getAvatarUrl() {
-        return avatarUrl;
-    }
-
-    public void setAvatarUrl(String avatarUrl) {
-        this.avatarUrl = avatarUrl == null ? null : avatarUrl.trim();
     }
 
     public String getEducation() {
@@ -79,5 +73,13 @@ public class User {
 
     public void setAdress(String adress) {
         this.adress = adress == null ? null : adress.trim();
+    }
+
+    public String getIdnumber() {
+        return idnumber;
+    }
+
+    public void setIdnumber(String idnumber) {
+        this.idnumber = idnumber == null ? null : idnumber.trim();
     }
 }
