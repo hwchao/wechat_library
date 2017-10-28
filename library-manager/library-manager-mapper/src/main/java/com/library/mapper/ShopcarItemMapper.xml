@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.library.mapper.ShopcarItemMapper" >
+  <resultMap id="BaseResultMap" type="com.library.dto.ShopcarItem" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="num_raters" property="numRaters" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <select id="selectByOpenid" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	SELECT
+		book.id,
+		book.title,
+		book.author,
+		book.image,
+		book.price,
+		book.num_raters
+	FROM
+		shopcar
+	INNER JOIN book ON shopcar.bid = book.id
+	WHERE
+		openid = #{openid}
+  </select>
+
+</mapper>

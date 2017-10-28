@@ -1,12 +1,15 @@
 package com.library.restful.service.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.library.common.utils.ExceptionUtil;
 import com.library.common.utils.JsonUtils;
+import com.library.dto.ShopcarItem;
+import com.library.mapper.ShopcarItemMapper;
 import com.library.mapper.ShopcarMapper;
 import com.library.pojo.Shopcar;
 import com.library.pojo.ShopcarExample;
@@ -23,6 +26,8 @@ public class BorrowServiceImpl implements BorrowService {
 	JedisClient jedisClient;
 	@Autowired
 	ShopcarMapper shopcarMapper;
+	@Autowired
+	ShopcarItemMapper shopcarItemMapper;
 	
 	@Override
 	public ResultType addShopcarItem(String sessionKey, long id) {
@@ -49,6 +54,16 @@ public class BorrowServiceImpl implements BorrowService {
 			resultType = ResultType.build(500, ExceptionUtil.getStackTrace(e));
 		}
 		return resultType;
+	}
+
+	@Override
+	public ResultType getShopcarItemsByOpenid(String sessionKey) {
+		ResultType result;
+		UserWechat userWechat = JsonUtils.jsonToPojo(jedisClient.get(sessionKey), UserWechat.class);
+		String openid = userWechat.getOpenid();
+		List<ShopcarItem> list = shopcarItemMapper.selectByOpenid(openid);
+		result = ResultType.build(200, "获取成功", list);
+		return result;
 	}
 
 }

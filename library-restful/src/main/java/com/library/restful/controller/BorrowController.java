@@ -28,4 +28,17 @@ public class BorrowController {
 		ResultType result = borrowServie.addShopcarItem(sessionKey, Long.parseLong(id));
 		return result;
 	}
+	/**
+	 * 
+	 * 功能：通过用户借阅车的书籍
+	 * 作者：hwchao
+	 * 修改时间：2017年10月16日下午3:57:50
+	 */
+	@RequestMapping(value="/get_shopcar_items", method=RequestMethod.POST)
+	@ResponseBody
+	public ResultType getShopcarItemsByOpenid(String sessionKey) {
+		System.out.println(sessionKey);
+		ResultType result = borrowServie.getShopcarItemsByOpenid(sessionKey);
+		return result;
+	}
 }
