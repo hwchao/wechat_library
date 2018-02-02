@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.library.pojo.User;
-import com.library.pojo.UserWechat;
 import com.library.restful.pojo.ResultType;
 import com.library.restful.service.UserService;
 import com.library.restful.util.WechatUtil;
