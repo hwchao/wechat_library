@@ -29,8 +29,8 @@ public class PictureServiceImpl implements PictureService {
 	private String IMAGE_BASE_URL;
 	
 	@Override
-	public Map save(MultipartFile uploadFile){
-		Map resultMap = new HashMap<>();
+	public Map<String,Object> save(MultipartFile uploadFile){
+		Map<String, Object> resultMap = new HashMap<String,Object>();
 		try{
 			String oldName = uploadFile.getOriginalFilename();
 			//生成图片文件的路径

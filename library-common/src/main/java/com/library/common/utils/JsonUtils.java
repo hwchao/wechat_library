@@ -15,7 +15,7 @@ public class JsonUtils {
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
     /**
-     * 将对象转换成json字符串。
+     * 将Object转换成json字符串。
      * <p>Title: pojoToJson</p>
      * <p>Description: </p>
      * @param data
@@ -32,8 +32,7 @@ public class JsonUtils {
     }
     
     /**
-     * 将json结果集转化为对象
-     * 
+     * 将json结果集转化为Object
      * @param jsonData json数据
      * @param clazz 对象中的object类型
      * @return
@@ -66,6 +65,5 @@ public class JsonUtils {
 		}
     	
     	return null;
-    }
-    
+    }   
 }

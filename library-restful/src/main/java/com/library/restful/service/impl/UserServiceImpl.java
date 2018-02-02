@@ -20,8 +20,8 @@ public class UserServiceImpl implements UserService {
 	UserMapper userMapper;
 	@Autowired
 	UserWechatMapper userWechatMapper;
-	@Autowired 
-	JedisClient jedisClient;
+	@Autowired
+	static JedisClient jedisClient;
 	/**
 	 * 
 	 * 功能：保存用户详细信息

@@ -1,14 +1,10 @@
 package com.library.restful.util;
 
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
-import java.security.Key;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Formatter;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
@@ -22,16 +18,12 @@ import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.codec.binary.Base64;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mysql.jdbc.interceptors.SessionAssociationInterceptor;
+import com.library.common.utils.JsonUtils;
 
 public class WechatUtil {
-	public static String AppID = "wxf37a24657ce3b336"; 
-	public static String AppSecret="251715f7d3362eb4972fe83548f8b6b7";
-	public static String KEY_ID_URL="https://api.weixin.qq.com/sns/jscode2session?appid=APPID&secret=SECRET&js_code=JSCODE&grant_type=authorization_code";
+	private static String AppID = "wxf37a24657ce3b336"; 
+	private static String AppSecret="251715f7d3362eb4972fe83548f8b6b7";
+	private static String KEY_ID_URL="https://api.weixin.qq.com/sns/jscode2session?appid=APPID&secret=SECRET&js_code=JSCODE&grant_type=authorization_code";
 	
 	/**
 	 * 
@@ -40,19 +32,10 @@ public class WechatUtil {
 	 * 修改时间：2017年10月8日下午11:06:06
 	 */
 	public static Map<String,String> getSessionKeyAndOpenId(String code){
-		Map<String, String> map = new HashMap<String,String>();
-		try {
-			String url = KEY_ID_URL.replace("APPID", AppID).replace("SECRET", AppSecret).replace("JSCODE", code);
-			String result = HttpClientUtil.doGet(url);
-			ObjectMapper objectMapper = new ObjectMapper();
-			map = objectMapper.readValue(result, new TypeReference<Map<String, String>>(){});
-		} catch (JsonParseException e) {
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		String url = KEY_ID_URL.replace("APPID", AppID).replace("SECRET", AppSecret).replace("JSCODE", code);
+		String jsonData = HttpClientUtil.doGet(url);
+		@SuppressWarnings("unchecked")
+		Map<String, String> map = JsonUtils.jsonToPojo(jsonData, Map.class);
 		return map;
 	}
 	

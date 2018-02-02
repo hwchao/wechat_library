@@ -25,7 +25,6 @@ public class IDUtils {
 		int end3 = random.nextInt(999);
 		//如果不足三位前面补0
 		String str = millis + String.format("%03d", end3);
-		
 		return str;
 	}
 	

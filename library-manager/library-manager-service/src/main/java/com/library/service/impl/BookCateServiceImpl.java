@@ -120,6 +120,7 @@ public class BookCateServiceImpl implements BookCateService {
 	 * 作者：hwchao
 	 * 修改时间：2017年8月23日下午9:13:27
 	 */
+	@SuppressWarnings("unused")
 	private void deleteByParentId(){
 		
 	}

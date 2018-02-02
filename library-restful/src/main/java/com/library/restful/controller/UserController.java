@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.library.pojo.User;
 import com.library.pojo.UserWechat;
 import com.library.restful.pojo.ResultType;
 import com.library.restful.service.UserService;
@@ -28,11 +29,12 @@ public class UserController {
 	 */
 	@RequestMapping(value="/login",method=RequestMethod.POST)
 	@ResponseBody
-	public ResultType login(String code,UserWechat userWechat) {
+	public ResultType login(String code) {
 		Map<String,String> map = WechatUtil.getSessionKeyAndOpenId(code); 
 		String openid = map.get("openid");
-		userWechat.setOpenid(openid);
-		ResultType result = userService.saveUserWechat(userWechat);
+		User user = new User();
+		user.setOpenid(openid);
+		ResultType result = userService.saveUser(user);
 		return result;
 	}
 	

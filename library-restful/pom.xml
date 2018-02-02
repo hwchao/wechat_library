@@ -6,9 +6,8 @@
 		<artifactId>library-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<groupId>hwchao.library</groupId>
+	
 	<artifactId>library-restful</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<dependencies>
@@ -91,7 +90,6 @@
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
-			<version>${httpclient.version}</version>
 		</dependency>
 	</dependencies>
 
@@ -146,9 +144,9 @@
 					<configuration>
 						<port>8080</port>
 						<path>/rest</path>
-						<url>https://www.huwenchao.cn/manager/text</url>
-						<username>tomcat</username>
-						<password>tomcat</password>
+						<!-- <url>https://www.huwenchao.cn/manager/text</url>
+						<username>hwchao</username>
+						<password>hwchao</password> -->
 					</configuration>
 				</plugin>
 			</plugins>

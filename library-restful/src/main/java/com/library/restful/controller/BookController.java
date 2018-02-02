@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.library.pojo.Book;
 import com.library.pojo.BookDesc;
-import com.library.restful.dao.JedisClient;
 import com.library.restful.pojo.ResultType;
 import com.library.restful.service.BookDescService;
 import com.library.restful.service.BookService;

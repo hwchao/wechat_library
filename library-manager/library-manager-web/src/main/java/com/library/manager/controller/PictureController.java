@@ -18,8 +18,8 @@ public class PictureController {
 	
 	@RequestMapping("/pic/upload")
 	@ResponseBody
-	public Map pictrueUpload(MultipartFile uploadFile){
-		Map result = pictureService.save(uploadFile);
+	public Map<String,Object> pictrueUpload(MultipartFile uploadFile){
+		Map<String,Object> result = pictureService.save(uploadFile);
 		return result;
 	}
 }
